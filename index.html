@@ -1,1 +1,50 @@
+<html>
+    <head>
+</head>
 
+<body>
+    <div style="display: inline-grid;padding: 50px;">
+        <div style="padding: 20px;">
+            <label for="tiro">In che zona del mondo ti trovi?</label>
+            <select id="cars" name="cars">
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="fiat">Fiat</option>
+                <option value="audi">Audi</option>
+            </select>
+        </div>
+        <div style="padding: 20px;">
+            <label for="tiro">Inserisci il tiro del d20:</label>
+            <input type="text" id="tiro" name="tiro">
+        </div>
+        <button type="button" onclick="gather()">Gather</button>
+    </div>
+</body>
+<script>
+    var objNum = 12;
+
+    function gather() {
+        var tiro = document.getElementById("tiro").value;
+        var elements = ["Bendaggio Lenitivo", "Pozione di cura imprevedibile", "Polvere Adrenalinica", "Pozione di cura standard", "Shot curativo minore", "Filtro di cura persistente", "Shot curativo superiore", "Fiaschetta inesauribile", "Succo di Brental", "Fresch'erba di Torfast", "Corone di Jormundar", "Fitz"];
+        if (tiro > 1 && tiro <= 5) {
+            alert("Non hai trovato nulla.");
+        } else if (tiro > 5 && tiro <= 10) {
+            randomValue(tiro, elements);
+        } else if (tiro > 10 && tiro <= 15) {
+
+        } else if (tiro > 15 && tiro <= 20) {
+
+        }
+    }
+
+    function randomValue(tiro, elements) {
+        var text = "";
+        var rand_for = Math.floor(Math.random() * 12) + 1;
+        for (var i = 0; i < rand_for; i++) {
+            var rand = Math.floor(Math.random() * objNum);
+            var extractedVal = elements[rand];
+            text = text.concat(extractedVal + " ");
+        }
+        alert(text);
+    }
+</script></html>
