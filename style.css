@@ -1,0 +1,26 @@
+body {
+    background-color: #212121;
+    color: white;
+    font-family: 'Righteous', cursive;
+    font-size: 23px;
+}
+
+.box {
+    margin: 200px;
+    border: solid;
+    border-color: white;
+    border-radius: 20px;
+}
+
+.customButton {
+    border-radius: 20px;
+    padding: 10px;
+    font-size: large;
+    font-family: inherit;
+}
+
+.textBox {
+    position: absolute;
+    margin-top: 5px;
+    margin-left: 10px;
+}

@@ -1,10 +1,12 @@
 <html>
 
 <head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <div style="display: inline-grid;padding: 50px;">
+    <div class="box" style="display: inline-grid;padding: 50px;">
         <div style="padding: 20px;">
             <label for="tiro">In che zona del mondo ti trovi?</label>
             <select id="zone" name="zone">
@@ -16,9 +18,9 @@
         </div>
         <div style="padding: 20px;">
             <label for="tiro">Inserisci il tiro del d20:</label>
-            <input type="text" id="tiro" name="tiro">
+            <input class="textBox" type="text" id="tiro" name="tiro">
         </div>
-        <button type="button" onclick="gather()">Gather</button>
+        <button class="customButton" type="button" onclick="gather()">Gather</button>
     </div>
 </body>
 <script>
@@ -32,7 +34,7 @@
             alert("Non hai trovato nulla.");
         } else if (tiro > 1 && tiro <= 5) {
             var filteredElements = filterElementsByZone(zone, elements);
-            alert(filteredElements[Math.floor(Math.random() * filteredElements.length)]);
+            alert(randomQuant(2) + "x " + filteredElements[Math.floor(Math.random() * filteredElements.length)]);
         } else if (tiro > 5 && tiro <= 10) {
             var filteredElements = filterElementsByZone(zone, elements);
             var tt = Math.floor(Math.random() * filteredElements.length / 3) + 1;
@@ -43,7 +45,7 @@
                 if (selected.includes(extractedEl)) {
                     continue;
                 }
-                selected.push(extractedEl);
+                selected.push(randomQuant(2) + "x " + extractedEl);
                 cc++;
             }
             var total = selected.join(", ");
@@ -58,7 +60,7 @@
                 if (selected.includes(extractedEl)) {
                     continue;
                 }
-                selected.push(extractedEl);
+                selected.push(randomQuant(4) + "x " + extractedEl);
                 cc++;
             }
             var total = selected.join(", ");
@@ -74,7 +76,7 @@
                 if (selected.includes(extractedEl)) {
                     continue;
                 }
-                selected.push(extractedEl);
+                selected.push(randomQuant(4) + "x " + extractedEl);
                 cc++;
             }
             var total = selected.join(", ");
@@ -110,16 +112,10 @@
         return e.options[e.selectedIndex].text;
     }
 
-    function randomValue(tiro, elements) {
-        var text = "";
-        /*var rand_for = Math.floor(Math.random() * elements.length) + 1;
-        for (var i = 0; i < rand_for; i++) {
-            var rand = Math.floor(Math.random() * elements.length);
-            var extractedVal = elements[rand];
-            text = text.concat(extractedVal + " ");
-        }
-        alert(text);*/
+    function randomQuant(num){
+        return Math.floor(Math.random() * num) + 1;
     }
+    
 
 </script>
 
