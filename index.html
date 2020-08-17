@@ -8,7 +8,7 @@
         <div style="padding: 20px;">
             <label for="tiro">In che zona del mondo ti trovi?</label>
             <select id="zone" name="zone">
-                <option value="solis">Solis</option>
+                <option value="solis" selected="selected">Solis</option>
                 <option value="saab">Saab</option>
                 <option value="fiat">Fiat</option>
                 <option value="audi">Audi</option>
@@ -22,31 +22,103 @@
     </div>
 </body>
 <script>
-    var objNum = 12;
-
     function gather() {
         var tiro = document.getElementById("tiro").value;
-        var elements = ["Bendaggio Lenitivo", "Pozione di cura imprevedibile", "Polvere Adrenalinica", "Pozione di cura standard", "Shot curativo minore", "Filtro di cura persistente", "Shot curativo superiore", "Fiaschetta inesauribile", "Succo di Brental", "Fresch'erba di Torfast", "Corone di Jormundar", "Fitz"];
-        if (tiro > 1 && tiro <= 5) {
+        //var elements = ["Bendaggio Lenitivo", "Pozione di cura imprevedibile", "Polvere Adrenalinica", "Pozione di cura standard", "Shot curativo minore", "Filtro di cura persistente", "Shot curativo superiore", "Fiaschetta inesauribile", "Succo di Brental", "Fresch'erba di Torfast", "Corone di Jormundar", "Fitz"];
+        var elements = ["Erba boschiva", "Corteccia boschiva", "Fungo Ifisole", "Corteccia di Faggio Bruno", "Radice di Anacula Sinphonia", "Fiore Cremisi", "Petali di Resilium", "Frutto di Nibis", "Pistillo di Resilium", "Quarzilum", "Erba d'orata", "Bacca di Brental", "Fresch'erba di Torfast", "Corone di Jormundar", "Fiore di Galia"];
+        var zone = getZone();
+        var selected = [];
+        if (tiro == 1) {
             alert("Non hai trovato nulla.");
+        } else if (tiro > 1 && tiro <= 5) {
+            var filteredElements = filterElementsByZone(zone, elements);
+            alert(filteredElements[Math.floor(Math.random() * filteredElements.length)]);
         } else if (tiro > 5 && tiro <= 10) {
-            randomValue(tiro, elements);
+            var filteredElements = filterElementsByZone(zone, elements);
+            var tt = Math.floor(Math.random() * filteredElements.length / 3) + 1;
+            var cc = 0;
+            while (cc < tt) {
+                var ex = Math.floor(Math.random() * filteredElements.length / 3);
+                var extractedEl = filteredElements[ex];
+                if (selected.includes(extractedEl)) {
+                    continue;
+                }
+                selected.push(extractedEl);
+                cc++;
+            }
+            var total = selected.join(", ");
+            alert(total);
         } else if (tiro > 10 && tiro <= 15) {
+            var filteredElements = filterElementsByZone(zone, elements);
+            var tt = Math.floor(Math.random() * filteredElements.length / 2) + 1;
+            var cc = 0;
+            while (cc < tt) {
+                var ex = Math.floor(Math.random() * filteredElements.length / 2);
+                var extractedEl = filteredElements[ex];
+                if (selected.includes(extractedEl)) {
+                    continue;
+                }
+                selected.push(extractedEl);
+                cc++;
+            }
+            var total = selected.join(", ");
+            alert(total);
 
         } else if (tiro > 15 && tiro <= 20) {
+            var filteredElements = filterElementsByZone(zone, elements);
+            var tt = Math.floor(Math.random() * filteredElements.length) + 1;
+            var cc = 0;
+            while (cc < tt) {
+                var ex = Math.floor(Math.random() * filteredElements.length);
+                var extractedEl = filteredElements[ex];
+                if (selected.includes(extractedEl)) {
+                    continue;
+                }
+                selected.push(extractedEl);
+                cc++;
+            }
+            var total = selected.join(", ");
+            alert(total);
 
         }
     }
 
+    function filterElementsByZone(zone, elements) {
+        var el = [];
+        switch (zone) {
+            case "Solis":
+                el.push(elements[0]);
+                el.push(elements[1]);
+                el.push(elements[2]);
+                el.push(elements[5]);
+                el.push(elements[6]);
+                el.push(elements[7]);
+                el.push(elements[8]);
+                el.push(elements[9]);
+                el.push(elements[10]);
+                el.push(elements[11]);
+                el.push(elements[14]);
+                break;
+            default:
+                break;
+        }
+        return el;
+    }
+
+    function getZone() {
+        var e = document.getElementById("zone");
+        return e.options[e.selectedIndex].text;
+    }
+
     function randomValue(tiro, elements) {
         var text = "";
-        var rand_for = Math.floor(Math.random() * 12) + 1;
+        /*var rand_for = Math.floor(Math.random() * elements.length) + 1;
         for (var i = 0; i < rand_for; i++) {
-            var rand = Math.floor(Math.random() * objNum);
+            var rand = Math.floor(Math.random() * elements.length);
             var extractedVal = elements[rand];
             text = text.concat(extractedVal + " ");
         }
-        alert(text);
+        alert(text);*/
     }
 
 </script>
