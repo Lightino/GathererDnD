@@ -11,16 +11,16 @@
             <label for="tiro">In che zona del mondo ti trovi?</label>
             <select id="zone" name="zone">
                 <option value="solis" selected="selected">Solis</option>
-                <option value="saab">Saab</option>
-                <option value="fiat">Fiat</option>
-                <option value="audi">Audi</option>
+                <option value="tsgb">Terre selvagge / Gran Bosco</option>
+                <option value="jortor">Jormundar / Montagne di Torfast</option>
+                <option value="nico">Nicodranas</option>
             </select>
         </div>
         <div style="padding: 20px;">
             <label for="tiro">Inserisci il tiro del d20:</label>
             <input class="textBox" type="text" id="tiro" name="tiro">
         </div>
-        <button class="customButton" type="button" onclick="gather()">Gather</button>
+        <button class="customButton" type="button" onclick="gather()">GATHER</button>
     </div>
 </body>
 <script>
@@ -101,6 +101,45 @@
                 el.push(elements[11]);
                 el.push(elements[14]);
                 break;
+            case "Terre selvagge / Gran Bosco":
+                el.push(elements[0]);
+                el.push(elements[1]);
+                el.push(elements[2]);
+                el.push(elements[3]);
+                el.push(elements[4]);
+                el.push(elements[6]);
+                el.push(elements[7]);
+                el.push(elements[8]);
+                el.push(elements[10]);
+                el.push(elements[11]);
+                el.push(elements[14]);
+                break;
+            case "Jormundar / Montagne di Torfast":
+                el.push(elements[0]);
+                el.push(elements[1]);
+                el.push(elements[2]);
+                el.push(elements[5]);
+                el.push(elements[6]);
+                el.push(elements[7]);
+                el.push(elements[8]);
+                el.push(elements[9]);
+                el.push(elements[10]);
+                el.push(elements[11]);
+                el.push(elements[14]);
+                break;
+            case "Nicodranas":
+                el.push(elements[0]);
+                el.push(elements[1]);
+                el.push(elements[2]);
+                el.push(elements[5]);
+                el.push(elements[6]);
+                el.push(elements[7]);
+                el.push(elements[8]);
+                el.push(elements[9]);
+                el.push(elements[10]);
+                el.push(elements[11]);
+                el.push(elements[14]);
+                break;
             default:
                 break;
         }
@@ -112,10 +151,9 @@
         return e.options[e.selectedIndex].text;
     }
 
-    function randomQuant(num){
+    function randomQuant(num) {
         return Math.floor(Math.random() * num) + 1;
     }
-    
 
 </script>
 
