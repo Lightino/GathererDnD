@@ -29,57 +29,20 @@
         //var elements = ["Bendaggio Lenitivo", "Pozione di cura imprevedibile", "Polvere Adrenalinica", "Pozione di cura standard", "Shot curativo minore", "Filtro di cura persistente", "Shot curativo superiore", "Fiaschetta inesauribile", "Succo di Brental", "Fresch'erba di Torfast", "Corone di Jormundar", "Fitz"];
         var elements = ["Erba boschiva", "Corteccia boschiva", "Fungo Ifisole", "Corteccia di Faggio Bruno", "Radice di Anacula Sinphonia", "Fiore Cremisi", "Petali di Resilium", "Frutto di Nibis", "Pistillo di Resilium", "Quarzilum", "Erba d'orata", "Bacca di Brental", "Fresch'erba di Torfast", "Corone di Jormundar", "Fiore di Galia"];
         var zone = getZone();
-        var selected = [];
         if (tiro == 1) {
             alert("Non hai trovato nulla.");
         } else if (tiro > 1 && tiro <= 5) {
             var filteredElements = filterElementsByZone(zone, elements);
             alert(randomQuant(2) + "x " + filteredElements[Math.floor(Math.random() * filteredElements.length)]);
         } else if (tiro > 5 && tiro <= 10) {
-            var filteredElements = filterElementsByZone(zone, elements);
-            var tt = Math.floor(Math.random() * filteredElements.length / 3) + 1;
-            var cc = 0;
-            while (cc < tt) {
-                var ex = Math.floor(Math.random() * filteredElements.length / 3);
-                var extractedEl = filteredElements[ex];
-                if (selected.includes(extractedEl)) {
-                    continue;
-                }
-                selected.push(randomQuant(2) + "x " + extractedEl);
-                cc++;
-            }
-            var total = selected.join(", ");
+            var total = selection(3, 2, zone, elements);
             alert(total);
         } else if (tiro > 10 && tiro <= 15) {
-            var filteredElements = filterElementsByZone(zone, elements);
-            var tt = Math.floor(Math.random() * filteredElements.length / 2) + 1;
-            var cc = 0;
-            while (cc < tt) {
-                var ex = Math.floor(Math.random() * filteredElements.length / 2);
-                var extractedEl = filteredElements[ex];
-                if (selected.includes(extractedEl)) {
-                    continue;
-                }
-                selected.push(randomQuant(4) + "x " + extractedEl);
-                cc++;
-            }
-            var total = selected.join(", ");
+            var total = selection(2, 4, zone, elements);
             alert(total);
 
         } else if (tiro > 15 && tiro <= 20) {
-            var filteredElements = filterElementsByZone(zone, elements);
-            var tt = Math.floor(Math.random() * filteredElements.length) + 1;
-            var cc = 0;
-            while (cc < tt) {
-                var ex = Math.floor(Math.random() * filteredElements.length);
-                var extractedEl = filteredElements[ex];
-                if (selected.includes(extractedEl)) {
-                    continue;
-                }
-                selected.push(randomQuant(4) + "x " + extractedEl);
-                cc++;
-            }
-            var total = selected.join(", ");
+            var total = selection(1, 4, zone, elements);
             alert(total);
 
         }
@@ -155,6 +118,23 @@
         return Math.floor(Math.random() * num) + 1;
     }
 
-</script>
-
-</html>
+    function selection(divider, quantity, zone, elements) {
+        var filteredElements = filterElementsByZone(zone, elements);
+        var tt = Math.floor(Math.random() * (filteredElements.length / divider)) + 1;
+        var cc = 0;
+        var selected = [];
+        var definitive = [];
+        while (cc < tt) {
+            var ex = Math.floor(Math.random() * (filteredElements.length / divider));
+            var extractedEl = filteredElements[ex];
+            if (!selected.includes(extractedEl)) {
+                selected.push(extractedEl);
+                cc++;
+            }
+        }
+        for (var i = 0; i < selected.length; i++) {
+            definitive.push(randomQuant(quantity) + "x " + selected[i]);
+        }
+        return definitive.join(", ");
+    }
+</script></html>
